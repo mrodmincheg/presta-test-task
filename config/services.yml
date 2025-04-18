@@ -1,0 +1,44 @@
+services:
+    _defaults:
+        public: true
+
+    PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController:
+        tags: ["controller.service_arguments"]
+
+    PrestaShop\Module\ProductLabel\:
+        resource: "../src/*"
+        exclude: "../src/{Entity,Migrations,Tests}"
+
+    PrestaShop\Module\ProductLabel\Validator\Constraints\ValidHexColorValidator:
+        tags: ["validator.constraint_validator"]
+
+    PrestaShop\Module\ProductLabel\Form\Modifier\ProductFormModifier:
+        autowire: true
+        arguments:
+            $formBuilderModifier: "@form.form_builder_modifier"
+            $labelChoice: '@PrestaShop\Module\ProductLabel\Form\LabelChoice'
+
+    PrestaShop\Module\ProductLabel\Repository\ProductLabelRepository:
+        autowire: true
+        autoconfigure: true
+        tags:
+            - { name: doctrine.repository_service }
+
+
+    productlabel.grid.product_label_definition_factory:
+        class: PrestaShop\Module\ProductLabel\Grid\Definition\Factory\ProductLabelGridDefinitionFactory
+        parent: "prestashop.core.grid.definition.factory.abstract_grid_definition"
+        public: true
+
+    productlabel.grid.product_label_data_factory:
+        class: PrestaShop\Module\ProductLabel\Grid\Data\ProductLabelGridDataFactory
+        arguments:
+            - '@PrestaShop\Module\ProductLabel\Repository\ProductLabelRepository'
+
+    productlabel.grid.product_label_grid_factory:
+        class: PrestaShop\PrestaShop\Core\Grid\GridFactory
+        arguments:
+            - "@productlabel.grid.product_label_definition_factory"
+            - "@productlabel.grid.product_label_data_factory"
+            - "@prestashop.core.grid.filter.form_factory"
+            - "@prestashop.core.hook.dispatcher"

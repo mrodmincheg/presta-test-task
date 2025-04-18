@@ -1,0 +1,38 @@
+product_label_admin:
+    path: /admin/product-labels
+    methods: [GET, 'POST']
+    defaults:
+        _controller: 'PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController::index'
+        _legacy_controller: "AdminProductLabelGrid"
+        _legacy_link: "AdminProductLabel"
+
+product_label_admin_search:
+    path: /admin/product-labels/search
+    methods: ['POST']
+    defaults:
+        _controller: 'PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController::searchGrid'
+        _legacy_controller: "AdminProductLabelSearchGrid"
+        _legacy_link: "AdminProductLabel"
+
+admin_product_label_edit:
+    path: /admin/product-labels/{id}/edit
+    methods: [GET, POST]
+    defaults:
+        _controller: 'PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController::edit'
+        _legacy_controller: "AdminProductLabel"
+        _legacy_link: "AdminProductLabel"
+
+admin_product_label_delete:
+    path: /admin/product-labels/{id}/delete
+    methods: [POST]
+    defaults:
+        _controller: 'PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController::delete'
+        _legacy_controller: "AdminProductLabelDelete"
+        _legacy_link: "AdminProductLabel"
+
+admin_product_label_create:
+    path: /admin/product-labels/new
+    defaults:
+        _controller: 'PrestaShop\Module\ProductLabel\Controller\Admin\ProductLabelController::edit'
+        _legacy_controller: "AdminProductLabel"
+        _legacy_link: "AdminProductLabel"

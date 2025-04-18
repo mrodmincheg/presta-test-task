@@ -1,0 +1,44 @@
+# Product Label Module for PrestaShop
+
+This module allows you to manage and assign custom labels to products in PrestaShop.
+
+---
+
+## Installation
+
+ 1. Download or clone module into `modules` directory of your PrestaShop installation
+ 2. Rename the directory to make sure that module directory is named `productlabel`*
+ 3. `cd` into module's directory and run following commands:
+     - `composer install`
+ 4. Install module:
+  - from Back Office in Module Catalog
+  - using the command `php ./bin/console prestashop:module install productlabel`
+
+
+---
+
+## Notices
+
+- ### PDP Layout Shift
+  A layout shift may occur on the **Product Detail Page**. Ideally, this would be addressed via theme override or a dedicated hook, but since there’s no hook around the product title, this approach was chosen.
+
+- ### PLP Product Item Heights
+  On the **Product Listing Page**, product items might have varying heights. Without a design or multiple hook points available, the current solution prioritizes functionality.
+
+- ### ProductReference Entity
+  The use of a `ProductReference` entity may not be the most optimized method. However, it allows this module to stay within the modern Doctrine-based entity system and avoid legacy `ObjectModel` usage.
+
+- ### Multiselect Styling
+  The styles for the multiselect input may look slightly off. It looks like the latest styles are missing or incomplete in the new back office theme. The component works functionally, but may need additional CSS adjustments for consistent appearance.
+
+- ### Final Thoughts
+  Hopefully, everything works as expected. Let me know if anything's missing! 🙂
+
+---
+
+## Features
+
+- Manage product labels (name, color, visibility)
+- Assign labels to multiple products
+- Display labels on product list and detail pages
+- Configurable display positions

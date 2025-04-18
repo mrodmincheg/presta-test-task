@@ -1,0 +1,43 @@
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered {
+	display: block;
+	padding-left: 8px;
+	padding-right: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.select2-container--bootstrap
+	.select2-selection--multiple
+	.select2-selection__arrow {
+	height: 26px;
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 20px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice {
+    background-color: #25b9d7;
+    border: 1px solid #25b9d7;
+    color: white;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 2px 6px;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__rendered li {
+    list-style: none;
+}
+
+.select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove {
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 2px;
+}
+
