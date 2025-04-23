@@ -131,10 +131,18 @@ class ProductLabel extends Module
         /** @var ProductLabelRepository $labelRepository */
         $labelRepository = $this->get(ProductLabelRepository::class);
 
-        //Create connections with selected labels
-        $labelRepository->deleteExistingConnectionsForProduct($productId);
-        $labelRepository->addNewConnectionsForProduct($labelIds, $productId);
+        $conn = $this->get('doctrine.orm.default_entity_manager')->getConnection();
 
+        try {
+            $conn->beginTransaction();
+            //Create connections with selected labels
+            $labelRepository->deleteExistingConnectionsForProduct($productId);
+            $labelRepository->addNewConnectionsForProduct($labelIds, $productId);
+            $conn->commit();
+        } catch (\Throwable $e) {
+            $conn->rollBack();
+            throw $e;
+        }
     }
 
     public function hookHeader()
